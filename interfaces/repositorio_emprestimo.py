@@ -16,6 +16,7 @@ class RepositorioEmprestimo(ABC):
     @abstractmethod
     def atualizar_emprestimo (
         self,
+        id,
         usuario,
         livro,
         tempo_emprestimo,
