@@ -4,7 +4,7 @@
 ### O que é
 Esta plataforma é uma ferramenta educativa web para aprendizado prático de HTML, CSS, JavaScript e conceitos de front-end, com foco em boas práticas, semântica e estruturação de páginas.
 
-O sistema permite que alunos explorem todas as principais tags HTML, testem formulários, observem interações CSS e compreendam conceitos fundamentais de desenvolvimento web. O ambiente é seguro, funcional e voltado para aprendizado ativo, sem necessidade de exposição ao público externo.
+O sistema permite que o usuário explore um sistema rudimentar similando o acesso ao acervo da biblioteca, possibilitando uma experiência de utilização do sistema da biblioteca. 
 
 
 ## Funcionalidades
@@ -36,8 +36,8 @@ O sistema permite que alunos explorem todas as principais tags HTML, testem form
 
 ### Clonar o repositório:
 
-git clone https://github.com/seuusuario/aprendizado-web.git<br>
-cd aprendizado-web
+git clone https://github.com/maglock009/trabalho-em-dupla-senac/<br>
+cd exercicio_modulo2
 
 ### Instalar dependências:
 
