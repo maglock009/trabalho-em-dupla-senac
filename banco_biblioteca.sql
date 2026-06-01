@@ -30,6 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `emprestimos` (
   `idEmprestimos` int(11) NOT NULL,
   `TempoEmprestimo` datetime NOT NULL,
+  `DataRetirada` datetime NOT NULL,
+  `DataDevolucao` datetime NOT NULL,
   `ValorEmprestimo` decimal(5,2) NOT NULL,
   `livros_idlivros` int(11) NOT NULL,
   `Usuarios_idUsuarios` int(11) NOT NULL
