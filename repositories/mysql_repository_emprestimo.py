@@ -88,6 +88,32 @@ class RepositorioMysql (RepositorioEmprestimo):
         for id, usuario, livro, tempo_emprestimo, data_retirada, data_devolucao, valor_emprestimo in emprestimo:
             print (f"ID: {id} | Usuário: {usuario} | Livro: {livro} | Tempo de Emprestimo: {tempo_emprestimo} | Data de retirada: {data_retirada} | Data de devolução: {data_devolucao} | Valor do empréstimo: {valor_emprestimo}")
 
+    def deletar_emprestimo (
+            self,
+            id
+    ):
+        
+        sql = """
+        DELETE FROM emprestimo
+        WHERE id = %s
+        """
+
+        valores = (id,)
+
+        self.cursor.execute(
+            sql, 
+            valores
+        )
+
+        self.conexao.commit()
+
+        if self.cursor.rowcount > 0:
+            print ("Usuário deletado com sucesso.")
+        
+
+        else: 
+            print("Usuário não encontrado.")
+
 
 
 
