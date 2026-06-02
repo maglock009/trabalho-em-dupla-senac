@@ -8,6 +8,8 @@ class RepositorioUsuarioMySQL(RepositorioUsuario):
         self.email = email
         self.__cpf = cpf
         self.telefone = telefone
+        self.conexao = conectar()
+        self.cursor = self.conexao.cursor()
         super().__init__()
 
     @property
@@ -25,6 +27,10 @@ class RepositorioUsuarioMySQL(RepositorioUsuario):
     def validar_email(email):
         return "@" in email and "." in email
     
+    @staticmethod
+    def validar_telefone(telefone):
+        return len(telefone) == 11
+
     @property 
     def cpf(self):
         return self.__cpf
