@@ -1,4 +1,4 @@
-from interfaces import *
+from repositories.repositorio import Repositorios
 
 class Sistema:
 
