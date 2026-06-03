@@ -1,9 +1,11 @@
 from repositories.repositorio import Repositorios
+from datetime import datetime
 
 class Sistema:
 
     def __init__(self):
         self.repositorio = Repositorios()
+        self.datetime = datetime()
 
     def menu(self):
         while True:
@@ -16,16 +18,17 @@ class Sistema:
             print("7 - Excluir livros cadastrados")
             print("8 - Listar livros disponíveis")
             print("9 - Resgistrar empréstimo")
-            print("10 - Listar empréstimos ativos")
-            print("11 - Exibir histórico de empréstimos")
-            print("12 - Sair")
+            print("10 - Atualizar empréstimo")
+            print("11 - Listar empréstimos ativos") 
+            print("12 - Exibir histórico de empréstimos")
+            print("13 - Sair")
             opcao = input("Selecione uma opção acima: ")
             #Ainda falta colocar os métodos dentro de cada case para funcionar a criação, atualização e exclusão de itens
             match opcao:
                 case "1":
                     while True:
                         try:
-                            nome = input("Digite o nome do usuário: ")
+                            nome = input("Digite o nome do usuário: ").title()
                             if nome.isdigit():
                                 raise ValueError
                             else:
@@ -107,12 +110,13 @@ class Sistema:
                 case "3":
                     try:
                         id = int(input("Digite o ID do usuário a deletar: "))
+                        Repositorios.deletar_usuario(id)
                     
                     except ValueError:
                         print("ID inválido")
                 
                 case "4":
-                    #Case para listar usuários cadastrados
+                    Repositorios.listar_usuarios()
                     pass
                 
                 case "5":
@@ -142,19 +146,39 @@ class Sistema:
                     pass
                     
                 case "9":
-                    titulo = input("Digite o título do livro que busca: ")
-                    #Adicionar método para realizar empréstimo
+                    try:
+                        usuario = input("Digite o nome do usuário: ").title()
+                        if usuario in Repositorios.listar_usuarios():
+                            continue
+                        else:
+                            raise ValueError()
+                    except ValueError:
+                        print("Usuário não encontrado.")
+                    titulo = input("Digite o título do livro desejado: ")
+                    try:
+                        tempo_emprestimo = int(input("Digite o tempo de empréstimo: "))
+                    except ValueError:
+                        print("Erro o número de dias deve ser um número inteiro.")
+                        return
+                    data_retirada = datetime.fromisoformat(input("Digite a data inicial do empréstimo: "))
+                    data_devolucao = datetime.fromisoformat(input("Digite a data de devolução: "))
+                    try:
+                        valor_emprestimo = float(input("Digite o valor do empréstimo: "))
+                    except ValueError:
+                        print("O valor não deve conter caracteres alfabéticos.")
+                    
+                    Repositorios.cadastrar_emprestimo(usuario,titulo,tempo_emprestimo,data_retirada,data_devolucao,valor_emprestimo)
                 
                 case "10":
-                    #Listar empréstimos ativos
+                    #Atualizar emprestimo
                     pass
 
                 case "11":
-                    #Exibir histórico de empréstimos
+                    Repositorios.listar_emprestimo()
                     pass
 
                 case "12":
-                    print("Encerrando sistema...")
+                    #Histórico de empréstimos
                     break 
 
                 case _:
