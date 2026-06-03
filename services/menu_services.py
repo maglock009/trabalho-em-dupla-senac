@@ -2,8 +2,8 @@ from repositories.repositorio import Repositorios
 
 class Sistema:
 
-    def __init__(self, repositorio):
-        self.repositorio = repositorio
+    def __init__(self):
+        self.repositorio = Repositorios()
 
     def menu(self):
         while True:
@@ -28,6 +28,8 @@ class Sistema:
                     cpf = input("CPF: ")
                     telefone = input("Telefone: ")
                 
+                    Repositorios.atualizar_emprestimo(nome,email,cpf,telefone)
+
                 case "2":
                     try:
                         id = int(input("ID do usuário a atualizar: "))
