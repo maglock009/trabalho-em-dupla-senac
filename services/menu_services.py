@@ -156,7 +156,7 @@ class Sistema:
                             raise ValueError()
                     except ValueError:
                         print("Usuário não encontrado.")
-                    titulo = input("Digite o título do livro desejado: ")
+                    livro = input("Digite o título do livro desejado: ")
                     try:
                         tempo_emprestimo = int(input("Digite o tempo de empréstimo: "))
                     except ValueError:
@@ -169,9 +169,14 @@ class Sistema:
                     except ValueError:
                         print("O valor não deve conter caracteres alfabéticos.")
                     
-                    Repositorios.cadastrar_emprestimo(usuario,titulo,tempo_emprestimo,data_retirada,data_devolucao,valor_emprestimo)
+                    Repositorios.cadastrar_emprestimo(usuario,livro,tempo_emprestimo,data_retirada,data_devolucao,valor_emprestimo)
                 
                 case "10":
+                    try:
+                        id = int(input("Digite o ID do livro a atualizar: "))
+                    except ValueError:
+                        print("ID não encontrado.")
+                    
                     #Atualizar emprestimo
                     pass
 
