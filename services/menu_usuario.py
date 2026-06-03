@@ -1,12 +1,3 @@
-from repositories.repositorio import Repositorios
-from datetime import datetime
-
-class Sistema:
-
-    def __init__(self):
-        self.repositorio = Repositorios()
-        self.datetime = datetime()
-
 class Usuario:
     def __init__(self, nome, email, telefone, cpf, endereco):
         if not Usuario.validar_email(email):
@@ -51,12 +42,3 @@ class Usuario:
     def validar_telefone(telefone):
         return len(telefone) == 11
     
-
-class livro:
-    def __init__(self, titulo, isbn, autor, editora, ano_publicacao, quantidade_livro):
-        self.titulo = titulo
-        self.isbn = isbn
-        self.autor = autor
-        self.editora = editora
-        self.ano_publicacao = ano_publicacao
-        self.quantidade_livro = quantidade_livro
