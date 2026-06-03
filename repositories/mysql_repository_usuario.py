@@ -1,8 +1,9 @@
 from interfaces.repositorio_usuario import RepositorioUsuario
+from services import menu_usuario
 from config.database import conectar
 
 
-class RepositorioUsuarioMySQL(RepositorioUsuario):
+class RepositorioUsuarioMySQL(menu_usuario):
     def __init__(self):
         self.conexao = conectar()
         self.cursor = self.conexao.cursor()
