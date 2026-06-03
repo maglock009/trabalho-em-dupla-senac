@@ -73,6 +73,8 @@ class Sistema:
 
                                 
                 
+                    Repositorios.atualizar_emprestimo(nome,email,cpf,telefone)
+
                 case "2":
                     try:
                         id = int(input("ID do usuário a atualizar: "))
