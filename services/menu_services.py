@@ -23,10 +23,52 @@ class Sistema:
             #Ainda falta colocar os métodos dentro de cada case para funcionar a criação, atualização e exclusão de itens
             match opcao:
                 case "1":
-                    nome = input("Nome: ")
-                    email = input("CPF: ")
-                    cpf = input("CPF: ")
-                    telefone = input("Telefone: ")
+                    while True:
+                        try:
+                            nome = input("Digite o nome do usuário: ")
+                            if nome.isdigit():
+                                raise ValueError
+                            else:
+                                break
+                        except ValueError:
+                            print("Nome inválido.")
+                    
+                        @staticmethod
+                        def validar_email(email):
+                            return "@" in email and "." in email
+                        
+                        email = input("Digite o email para cadastro: ")
+                        if validar_email(email):
+                            pass
+                        else:
+                            return
+                        
+                        while True:
+                            try:
+                                telefone = int(input("Digite o número de telefone para cadastro: "))
+                                if len(telefone) == 11:
+                                    break
+                                else:
+                                    raise ValueError
+                            except ValueError:
+                                print("Formato de número de telefone inválido.")
+
+                        while True:
+                            try:
+                                cpf = int(input("Digite o CPF para cadastro: "))
+                                if len(cpf) == 11:
+                                    break
+                                else:
+                                    raise ValueError
+                            except ValueError:
+                                print("Formato de CPF inválido.")
+                        
+                        endereco = input("Digite o endereço do usuário: ")
+                            
+                        Repositorios.cadastrar_usuario(nome,email,telefone,cpf,endereco)
+                        
+
+                                
                 
                     Repositorios.atualizar_emprestimo(nome,email,cpf,telefone)
 
@@ -34,13 +76,35 @@ class Sistema:
                     try:
                         id = int(input("ID do usuário a atualizar: "))
 
-                        nome = input("Novo nome: ")
-
-                        email = input("Novo email: ")
-
-                        telefone = input("Novo contato de telefone: ")
                     except ValueError:
                         print("ID inválido")
+
+                    try:
+                        nome = input("Digite o novo nome do usuário: ")
+                        if nome.isdigit():
+                            raise ValueError
+                    except ValueError:
+                        print("O nome digitado é inválido.")
+                    
+                    
+                    @staticmethod 
+                    def validar_email(email):
+                        return "@" in email and "." in email
+                    email = input("Digite o novo email do usuário: ")
+                    if not validar_email(email):
+                        return
+                    
+                    try:
+                        telefone = int(input("Digite o novo número de telefone do usuário: "))
+                        if len(telefone) != 11:
+                            raise ValueError
+                    except ValueError:
+                        print("Formato de número de telefone inválido.")
+                    
+                    endereco = input("Digite o nome do novo endereço do usuário: ")
+                    Repositorios.atualizar_usuario(id, nome, email, telefone, endereco)
+                    
+                        
                 
                 case "3":
                     try:

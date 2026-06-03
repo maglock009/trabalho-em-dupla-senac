@@ -7,7 +7,8 @@ class RepositorioUsuario(ABC):
         nome,
         email,
         telefone,
-        cpf
+        cpf,
+        endereco
     ):
         pass
 
@@ -17,7 +18,8 @@ class RepositorioUsuario(ABC):
         id,
         nome,
         email,
-        telefone
+        telefone,
+        endereco
     ):
         pass
 

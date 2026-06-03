@@ -3,42 +3,113 @@ from config.database import conectar
 
 
 class RepositorioUsuarioMySQL(RepositorioUsuario):
-    def __init__(self, nome, email, cpf, telefone):
-        self.nome = nome
-        self.email = email
-        self.__cpf = cpf
-        self.telefone = telefone
+    def __init__(self):
         self.conexao = conectar()
         self.cursor = self.conexao.cursor()
-        super().__init__()
 
-    @property
-    def nome(self):
-        return self.nome
-    
-    @nome.setter
-    def nome(self, valor):
-        if valor.isalpha():
-            self.nome = valor
-        else:
-            raise ValueError("O nome não deve conter número ou caracteres especiais: ")
-        
-    @staticmethod
-    def validar_email(email):
-        return "@" in email and "." in email
-    
-    @staticmethod
-    def validar_telefone(telefone):
-        return len(telefone) == 11
+    def criar_usuario(self,nome,email,telefone,cpf,endereco):
 
-    @property 
-    def cpf(self):
-        return self.__cpf
-    
-    @cpf.setter
-    def cpf(self, valido):
-        if len(valido) == 11:
-            self.__cpf = valido
+        sql = """INSERT INTO usuarios (nome,email,telefone,cpf,endereco)
+        VALUES (%s, %s,%s,%s,%s)
+        """
+
+        valores = (nome, email, telefone, cpf, endereco)
+
+        self.cursor.execute(sql,valores)
+
+        self.conexao.commit()
+
+        print(
+            f"Usuário {nome} "
+            f"criado com sucesso."
+        )
+
+    def listar_usuarios(self):
+
+        sql = "SELECT id, nome, email, telefone, cpf FROM usuarios"
+
+        self.cursor.execute(sql)
+
+        usuarios = self.cursor.fetchall()
+
+        if len(usuarios) == 0:
+            print("Nenhum usuário cadastrado.")
+            return
+
+        for id, nome, email, telefone, cpf, endereco in usuarios:
+            print(f"ID: {id} | Nome: {nome} | Email: {email} | Telefone: {telefone} | CPF: {cpf} | Endereço: {endereco}")
+
+    def atualizar_usuario(
+        self,
+        id,
+        novo_nome,
+        novo_email,
+        novo_telefone,
+        novo_endereco
+    ):
+
+        sql = """
+        UPDATE usuarios
+        SET nome = %s,
+            email = %s,
+            telefone = %s,
+            endereco = %s
+        WHERE id = %s
+        """
+
+        valores = (
+            novo_nome,
+            novo_email,
+            novo_telefone,
+            novo_endereco,
+            id
+        )
+
+        self.cursor.execute(
+            sql,
+            valores
+        )
+
+        self.conexao.commit()
+
+        if self.cursor.rowcount > 0:
+
+            print(
+                "Usuário atualizado "
+                "com sucesso."
+            )
+
         else:
-            raise ValueError("Formato de CPF inválido.")
-    
+
+            print(
+                "Usuário não encontrado."
+            )
+
+    def deletar_usuario(self, id):
+
+        sql = """
+        DELETE FROM usuarios
+        WHERE id = %s
+        """
+
+        valores = (id,)
+
+        self.cursor.execute(
+            sql,
+            valores
+        )
+
+        self.conexao.commit()
+
+        if self.cursor.rowcount > 0:
+
+            print(
+                "Usuário deletado "
+                "com sucesso."
+            )
+
+        else:
+
+            print(
+                "Usuário não encontrado."
+            )
