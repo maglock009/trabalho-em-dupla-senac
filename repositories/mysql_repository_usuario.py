@@ -1,9 +1,7 @@
 from interfaces.repositorio_usuario import RepositorioUsuario
-from services import menu_usuario
 from config.database import conectar
 
-
-class RepositorioUsuarioMySQL(menu_usuario):
+class RepositorioUsuarioMySQL(RepositorioUsuario):
     def __init__(self):
         self.conexao = conectar()
         self.cursor = self.conexao.cursor()
@@ -11,7 +9,7 @@ class RepositorioUsuarioMySQL(menu_usuario):
     def criar_usuario(self,nome,email,telefone,cpf,endereco):
 
         sql = """INSERT INTO usuarios (nome,email,telefone,cpf,endereco)
-        VALUES (%s, %s,%s,%s,%s)
+        VALUES (%s,%s,%s,%s,%s)
         """
 
         valores = (nome, email, telefone, cpf, endereco)
@@ -27,7 +25,7 @@ class RepositorioUsuarioMySQL(menu_usuario):
 
     def listar_usuarios(self):
 
-        sql = "SELECT id, nome, email, telefone, cpf FROM usuarios"
+        sql = "SELECT id, nome, email, telefone, cpf, endereco FROM usuarios"
 
         self.cursor.execute(sql)
 
