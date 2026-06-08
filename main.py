@@ -18,10 +18,15 @@ def main():
         match opcao:
             case "1":
                 nome = input("Digite o nome para cadastro: ")
+                Usuario.validar_nome(nome)
                 email = input("Digite o email para cadastro: ")
+                Usuario.validar_email(email)
                 telefone = input("Digite o número de telefone para cadastro: ")
+                Usuario.validar_telefone (telefone)
                 cpf = input("Digite o CPF para cadastro: ")
+                Usuario.validar_cpf(cpf)
                 endereco = input("Digite o endereço do usuário: ")
+                Usuario.validar_endereco(endereco)
                 RepositorioUsuarioMySQL.criar_usuario(nome, email, telefone, cpf, endereco)
 
             case "2":

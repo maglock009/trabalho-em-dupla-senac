@@ -4,35 +4,17 @@ class Usuario:
             raise ValueError("Email inválido")
         if not Usuario.validar_telefone(telefone):
             raise ValueError("Telefone inválido")
+        if not Usuario.validar_nome (nome):
+            raise ValueError ("Nome inválido")
+        if not Usuario.validar_cpf(cpf):
+            raise ValueError ("CPF inválido")
+        if not Usuario.validar_endereco(endereco):
+            raise ValueError("Endereço inválido")
         self.nome = nome
         self.email = email
         self.telefone = telefone
         self.cpf = cpf
         self.endereco = endereco
-
-    @property
-    def nomes(self):
-        return self.nome
-    
-    @nomes.setter
-    def nomes(self, name):
-        if str(name).isdigit():
-            raise ValueError
-        else:
-            self.nome = name
-    
-    @property
-    def cpfs(self):
-        return self.cpf
-    
-    @cpfs.setter
-    def cpfs(self, valor):
-        try:
-            if len(str(valor)) == 11:
-                self.cpf = valor
-        except ValueError:
-            print("O CPF deve conter apenas dígitos numéricos.")
-            return
     
     @staticmethod
     def validar_email(email):
@@ -40,5 +22,30 @@ class Usuario:
     
     @staticmethod
     def validar_telefone(telefone):
-        return len(str(telefone)) == 11
+        return len(telefone) == 11
+
+    @staticmethod
+    def validar_nome(nome):
+        if any(char.isdigit() for char in str(nome)):
+            print ("O seu nome não pode ter números.")
+            return False
+        elif not str(nome).strip():
+            print ("O seu nome não pode estar vazio.")
+            return False
+        else:
+            return True
     
+    @staticmethod
+    def validar_cpf (cpf):
+        if len(str(cpf)) != 0 or str(cpf).isalpha()==True:
+            raise ValueError ("CPF inválido")
+        else:
+            return cpf
+        
+    @staticmethod
+    def validar_endereco(endereco):
+        if len(str(endereco)) == 0:
+            print("O campo de endereço não pode estar vazio.")
+            return False
+        else:
+            return True
