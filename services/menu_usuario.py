@@ -4,6 +4,10 @@ class Usuario:
             raise ValueError("Email inválido")
         if not Usuario.validar_telefone(telefone):
             raise ValueError("Telefone inválido")
+        if not Usuario.validar_nome (nome):
+            raise ValueError ("Nome inválido")
+        if not Usuario.validar_cpf(cpf):
+            raise ValueError ("CPF inválido")
         self.nome = nome
         self.email = email
         self.telefone = telefone
@@ -40,4 +44,21 @@ class Usuario:
     @staticmethod
     def validar_telefone(telefone):
         return len(telefone) == 11
+
+    @staticmethod
+    def validar_nome(nome):
+        if any(char.isdigit() for char in str(nome)):
+            print ("O seu nome não pode ter números.")
+            return False
+        elif not str(nome).strip():
+            print ("O seu nome não pode estar vazio.")
+            return False
+        else:
+            return True
     
+    @staticmethod
+    def validar_cpf (cpf):
+        if len(str(cpf)) != 0 or str(cpf).isalpha()==True:
+            raise ValueError ("CPF inválido")
+        else:
+            return cpf
