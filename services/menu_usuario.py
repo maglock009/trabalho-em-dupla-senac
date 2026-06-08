@@ -41,4 +41,8 @@ class Usuario:
     @staticmethod
     def validar_telefone(telefone):
         return len(telefone) == 11
+<<<<<<< HEAD
     
+=======
+    
+>>>>>>> 413aaeb074f4742d505574dc10ce4dffb6cadd01
