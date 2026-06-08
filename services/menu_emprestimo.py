@@ -8,18 +8,15 @@ class Emprestimo:
             raise ValueError ("Data inválida.")
         if not Emprestimo.validar_data(DataDevolucao):
             raise ValueError ("Data inválida")
-        self.__ValorEmprestimo = ValorEmprestimo
+        self.ValorEmprestimo = ValorEmprestimo
 
-    @property
-    def ValorEmprestimo (self):
-        return self.__ValorEmprestimo
-
-    @ValorEmprestimo.setter
-    def ValorEmprestimo (self,valor):
-        if str(valor).isdigit() == False:
-            raise ValueError
+    
+    @staticmethod
+    def validar_valor_emprestimo(ValorEmprestimo):
+        if str(ValorEmprestimo).isdigit() == False:
+            raise ValueError("Erro o valor de empréstimo deve ser representado por dígitos numéricos.")
         else:
-            self.ValorEmprestimo = valor
+            return ValorEmprestimo
     
 
     @staticmethod

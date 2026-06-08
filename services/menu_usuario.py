@@ -29,7 +29,7 @@ class Usuario:
     def cpfs(self, valor):
         try:
             if len(str(valor)) == 11:
-                self.__cpf = valor
+                self.cpf = valor
         except ValueError:
             print("O CPF deve conter apenas dígitos numéricos.")
             return
