@@ -7,7 +7,7 @@ class Usuario:
         self.nome = nome
         self.email = email
         self.telefone = telefone
-        self.__cpf = cpf
+        self.cpf = cpf
         self.endereco = endereco
 
     @property
@@ -16,23 +16,29 @@ class Usuario:
     
     @nomes.setter
     def nomes(self, name):
-        if name.isdigit():
-            raise ValueError
-        else:
-            self.nome = name
+        try:
+            if name.isdigit():
+                raise ValueError
+            else:
+                self.nome = name
+        except ValueError:
+            print("O nome não deve conter dígitos ou caracteres especiais.")
+            return
     
     @property
-    def cpf(self):
-        return self.__cpf
+    def cpfs(self):
+        return self.cpf
     
-    @cpf.setter
-    def cpf(self, valor):
+    @cpfs.setter
+    def cpfs(self, valor):
         try:
-            valor = int()
-            if len(valor) == 11:
-                self.__cpf = valor
+            if valor.isdigit() and len(str(valor)) == 11:
+                self.cpf = valor
+            else:
+                raise ValueError
         except ValueError:
-            print("Formato de CPF inválido.")
+            print("O CPF deve conter apenas dígitos numéricos.")
+            return
     
     @staticmethod
     def validar_email(email):
@@ -40,5 +46,5 @@ class Usuario:
     
     @staticmethod
     def validar_telefone(telefone):
-        return len(telefone) == 11
+        return telefone.isdigit() and len(telefone) == 11
     

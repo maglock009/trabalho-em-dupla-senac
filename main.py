@@ -12,12 +12,12 @@ def main():
         opcao = input("Selecione uma opção acima: ").strip().lower()
         match opcao:
             case "1":
-                Usuario.nome = input("Digite o nome para cadastro: ")
-                Usuario.email = input("Digite o email para cadastro: ")
-                Usuario.telefone = input("Digite o número de telefone para cadastro: ")
-                Usuario.cpf = input("Digite o CPF para cadastro: ")
-                Usuario.endereco = input("Digite o endereço do usuário: ")
-                RepositorioUsuarioMySQL.criar_usuario(nome, email, telefone, cpf, endereco)
+                nome = input("Digite o nome para cadastro: ")
+                email = input("Digite o email para cadastro: ")
+                telefone = input("Digite o telefone para cadastro: ")
+                cpf = input("Digite o CPF para cadastro: ")
+                endereco= input("Digite o endereço para cadastro: ")
+                RepositorioUsuarioMySQL.criar_usuario(nome,email,telefone,cpf,endereco)
 
             case "2":
                 try: 
