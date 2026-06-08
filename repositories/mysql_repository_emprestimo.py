@@ -1,8 +1,9 @@
-from interfaces.repositorio_emprestimo import RepositorioEmprestimo
+from services.menu_emprestimo import Emprestimo
 from config.database import conectar
 
-class RepositorioMysql (RepositorioEmprestimo):
-    def __init__ (self):
+class RepositorioMysql (Emprestimo):
+    def __init__ (self, TempoEmprestimo, DataRetirada, DataDevolucao, ValorEmprestimo):
+        super().__init__(TempoEmprestimo, DataRetirada, DataDevolucao, ValorEmprestimo)
         self.conexao = conectar()
         self.cursor = self.conexao.cursor()
     

@@ -16,14 +16,10 @@ class Usuario:
     
     @nomes.setter
     def nomes(self, name):
-        try:
-            if name.isdigit():
-                raise ValueError
-            else:
-                self.nome = name
-        except ValueError:
-            print("O nome não deve conter dígitos ou caracteres especiais.")
-            return
+        if str(name).isdigit():
+            raise ValueError
+        else:
+            self.nome = name
     
     @property
     def cpfs(self):
@@ -32,10 +28,8 @@ class Usuario:
     @cpfs.setter
     def cpfs(self, valor):
         try:
-            if valor.isdigit() and len(str(valor)) == 11:
-                self.cpf = valor
-            else:
-                raise ValueError
+            if len(str(valor)) == 11:
+                self.__cpf = valor
         except ValueError:
             print("O CPF deve conter apenas dígitos numéricos.")
             return
@@ -46,5 +40,5 @@ class Usuario:
     
     @staticmethod
     def validar_telefone(telefone):
-        return telefone.isdigit() and len(telefone) == 11
+        return len(str(telefone)) == 11
     

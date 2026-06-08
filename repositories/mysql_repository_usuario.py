@@ -1,10 +1,12 @@
-from interfaces.repositorio_usuario import RepositorioUsuario
+from services.menu_usuario import Usuario
 from config.database import conectar
 
-class RepositorioUsuarioMySQL(RepositorioUsuario):
-    def __init__(self):
+class RepositorioUsuarioMySQL(Usuario):
+    def __init__(self, nome, email, telefone, cpf, endereco):
+        super().__init__(nome, email, telefone, cpf, endereco)
         self.conexao = conectar()
         self.cursor = self.conexao.cursor()
+
 
     def criar_usuario(self,nome,email,telefone,cpf,endereco):
 
