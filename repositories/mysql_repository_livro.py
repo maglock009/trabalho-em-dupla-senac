@@ -1,8 +1,9 @@
-from interfaces.repositorio_livro import RepositorioLivro
+from services.menu_livro import Livro
 from config.database import conectar
 
-class RepositorioLivroMysql (RepositorioLivro):
-    def __init__ (self):
+class RepositorioLivroMysql (Livro):
+    def __init__ (self, Titulo,ISBN,Autor,Editora,AnoPublicacao,QuantidadeLivro):
+        super().__init__(Titulo, ISBN, Autor, Editora, AnoPublicacao, QuantidadeLivro)
         self.conexao = conectar ()
         self.cursor = self.conexao.cursor()
     
