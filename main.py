@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from repositories.mysql_repository_usuario import RepositorioUsuarioMySQL
 from services.menu_usuario import Usuario
 
@@ -52,4 +50,3 @@ def main():
 if __name__ == "__main__":
     main()
 
->>>>>>> 413aaeb074f4742d505574dc10ce4dffb6cadd01

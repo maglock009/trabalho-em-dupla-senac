@@ -13,7 +13,7 @@ class Livro:
 
     @ISBN.setter
     def ISBN(self, valor):
-        if valor.isdigit() and len(valor) == 13:
+        if str(valor).isdigit() and len(str(valor)) == 13:
             self.__ISBN = valor
         else:
             raise ValueError("O código ISBN do livro deve conter apenas 13 dígitos.")
@@ -36,7 +36,7 @@ class Livro:
 
     @autor.setter
     def autor(self, nome):
-        if nome.isdigit():
+        if str(nome).isdigit():
             raise ValueError
         else:
             self.Autor = nome

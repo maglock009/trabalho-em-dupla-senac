@@ -16,7 +16,7 @@ class Usuario:
     
     @nomes.setter
     def nomes(self, name):
-        if name.isdigit():
+        if str(name).isdigit():
             raise ValueError
         else:
             self.nome = name
@@ -28,8 +28,7 @@ class Usuario:
     @cpf.setter
     def cpf(self, valor):
         try:
-            valor = int()
-            if len(valor) == 11:
+            if len(str(valor)) == 11:
                 self.__cpf = valor
         except ValueError:
             print("Formato de CPF inválido.")
@@ -41,8 +40,4 @@ class Usuario:
     @staticmethod
     def validar_telefone(telefone):
         return len(telefone) == 11
-<<<<<<< HEAD
     
-=======
-    
->>>>>>> 413aaeb074f4742d505574dc10ce4dffb6cadd01

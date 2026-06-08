@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Emprestimo:
     def __init__ (self, TempoEmprestimo, DataRetirada, DataDevolucao, ValorEmprestimo):
         if not Emprestimo.validar_data(TempoEmprestimo):
@@ -14,13 +16,19 @@ class Emprestimo:
 
     @ValorEmprestimo.setter
     def ValorEmprestimo (self,valor):
-        if valor.isdigit() == False:
+        if str(valor).isdigit() == False:
             raise ValueError
         else:
             self.ValorEmprestimo = valor
-        
+    
 
-
+    @staticmethod
+    def validar_data (data):
+        try:
+            datetime.strptime (data, "%d/%m/%y")
+            return True
+        except ValueError:
+            return False
 
 
         
