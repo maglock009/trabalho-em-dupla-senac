@@ -58,8 +58,9 @@ class Livro:
     
     @staticmethod
     def validar_ano_publicacao(AnoPublicacao):
-        if AnoPublicacao == datetime.fromisoformat():
-            return AnoPublicacao
-        else:
-            print("O ano de publicação definido tem formato inválido.")
+        try:
+            datetime.strptime (AnoPublicacao, "%d/%m/%y")
+            return True
+        except ValueError:
+            return False
     

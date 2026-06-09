@@ -31,6 +31,7 @@ class Usuario:
             return False
         elif not str(nome).strip():
             print ("O seu nome não pode estar vazio.")
+            return
         else:
             return nome
     
