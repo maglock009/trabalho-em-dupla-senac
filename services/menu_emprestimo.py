@@ -8,6 +8,8 @@ class Emprestimo:
             raise ValueError ("Data inválida.")
         if not Emprestimo.validar_data(DataDevolucao):
             raise ValueError ("Data inválida")
+        if not Emprestimo.validar_valor_emprestimo(ValorEmprestimo):
+            raise ValueError("Valor de empréstimo inválido.")
         self.ValorEmprestimo = ValorEmprestimo
 
     

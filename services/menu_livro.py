@@ -2,6 +2,18 @@ from datetime import datetime
 
 class Livro:
     def __init__(self,Titulo,ISBN,Autor,Editora,AnoPublicacao,QuantidadeLivro):
+        if not Livro.validar_titulo(Titulo):
+            raise ValueError("Título inválido.")
+        if not Livro.validar_isbn(ISBN):
+            raise ValueError("Código ISBN inválido.")
+        if not Livro.validar_autor(Autor):
+            raise ValueError("Nome do autor inválido.")
+        if not Livro.validar_editora(Editora):
+            raise ValueError("Nome da editora não pode estar vazio.")
+        if not Livro.validar_ano_publicacao(AnoPublicacao):
+            raise ValueError("Ano de publicação inválido.")
+        if not Livro.validar_quantidade(QuantidadeLivro):
+            raise ValueError("Quantidade de livros inválida.")
         self.titulo = Titulo
         self.ISBN = ISBN
         self.Autor = Autor
