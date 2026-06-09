@@ -2,6 +2,7 @@ from repositories.mysql_repository_usuario import RepositorioUsuarioMySQL
 from services.menu_usuario import Usuario
 
 def main():
+    
     while True:
         print("1 - Cadastrar usuário")
         print("2 - Atualizar usuário")
@@ -21,7 +22,10 @@ def main():
                 cpf = input("Digite o CPF para cadastro: ")
                 Usuario.validar_cpf(cpf)
                 endereco = input("Digite o endereço do usuário: ")
-                RepositorioUsuarioMySQL.criar_usuario(nome, email, telefone, cpf, endereco)
+                
+                repositorio = RepositorioUsuarioMySQL(nome, email, telefone, cpf, endereco)
+
+                repositorio.criar_usuario(nome, email, telefone, cpf, endereco)
 
             case "2":
                 try: 

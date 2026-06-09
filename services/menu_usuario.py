@@ -52,13 +52,12 @@ class Usuario:
             return False
         elif not str(nome).strip():
             print ("O seu nome não pode estar vazio.")
-            return False
         else:
-            return True
+            return nome
     
     @staticmethod
     def validar_cpf (cpf):
-        if len(str(cpf)) != 0 or str(cpf).isalpha()==True:
-            raise ValueError ("CPF inválido")
+        if len(str(cpf)) != 11 or str(cpf).isalpha()==True:
+            print ("CPF inválido")
         else:
             return cpf
