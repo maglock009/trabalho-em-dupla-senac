@@ -8,34 +8,13 @@ class Usuario:
             raise ValueError ("Nome inválido")
         if not Usuario.validar_cpf(cpf):
             raise ValueError ("CPF inválido")
+        if not Usuario.validar_endereco(endereco):
+            raise ValueError("Endereço inválido")
         self.nome = nome
         self.email = email
         self.telefone = telefone
-        self.__cpf = cpf
+        self.cpf = cpf
         self.endereco = endereco
-
-    @property
-    def nomes(self):
-        return self.nome
-    
-    @nomes.setter
-    def nomes(self, name):
-        if str(name).isdigit():
-            raise ValueError
-        else:
-            self.nome = name
-    
-    @property
-    def cpf(self):
-        return self.__cpf
-    
-    @cpf.setter
-    def cpf(self, valor):
-        try:
-            if len(str(valor)) == 11:
-                self.__cpf = valor
-        except ValueError:
-            print("Formato de CPF inválido.")
     
     @staticmethod
     def validar_email(email):
@@ -61,3 +40,11 @@ class Usuario:
             print ("CPF inválido")
         else:
             return cpf
+        
+    @staticmethod
+    def validar_endereco(endereco):
+        if len(str(endereco)) == 0:
+            print("O campo de endereço não pode estar vazio.")
+            return False
+        else:
+            return True

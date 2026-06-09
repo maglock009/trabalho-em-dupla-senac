@@ -3,7 +3,6 @@ from config.database import conectar
 
 class RepositorioUsuarioMySQL(Usuario):
     def __init__(self, nome, email, telefone, cpf, endereco):
-        super().__init__(nome, email, telefone, cpf, endereco)
         self.conexao = conectar()
         self.cursor = self.conexao.cursor()
 
