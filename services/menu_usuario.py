@@ -46,6 +46,5 @@ class Usuario:
     def validar_endereco(endereco):
         if len(str(endereco)) == 0:
             print("O campo de endereço não pode estar vazio.")
-            return False
         else:
-            return True
+            return endereco

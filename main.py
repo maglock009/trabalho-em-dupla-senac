@@ -57,8 +57,7 @@ def main():
             case "3":
                 try:
                     id = int(input("Digite o ID do usuário a excluir: "))
-                    repositorio = RepositorioUsuarioMySQL(id)
-                    repositorio.deletar_usuario()
+                    RepositorioUsuarioMySQL.deletar_usuario(id)
                 except ValueError:
                     print("ID inválido.")
             
