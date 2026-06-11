@@ -2,8 +2,7 @@ from services.menu_livro import Livro
 from config.database import conectar
 
 class RepositorioLivroMysql (Livro):
-    def __init__ (self, Titulo,ISBN,Autor,Editora,AnoPublicacao,QuantidadeLivro):
-        super().__init__(Titulo, ISBN, Autor, Editora, AnoPublicacao, QuantidadeLivro)
+    def __init__ (self):
         self.conexao = conectar ()
         self.cursor = self.conexao.cursor()
     
@@ -18,7 +17,7 @@ class RepositorioLivroMysql (Livro):
     ):
         
         sql = """
-        INSERT INTO livro (Titulo, ISBN, Autor, Editora, AnoPublicacao, QuantidadeLivro)
+        INSERT INTO livros (Título, ISBN, Autor, Editora, AnoPublicacao, QuantidadeLivro)
         VALUES (%s, %s, %s, %s, %s, %s)
         """
 
@@ -44,14 +43,14 @@ class RepositorioLivroMysql (Livro):
     ):
         
         sql = """
-        UPDATE livro
-        SET Titulo = %s,
+        UPDATE livros
+        SET Título = %s,
             ISBN = %s,
             Autor = %s,
             Editora = %s,
             AnoPublicacao = %s,
             QuantidadeLivro = %s
-        WHERE id = %s
+        WHERE idlivros = %s
         """
 
         valores = (
@@ -79,7 +78,7 @@ class RepositorioLivroMysql (Livro):
 
 
     def listar_livro (self):
-        sql = """SELECT id, Titulo, ISBN, Autor, Editora, AnoPublicacao, QuantidadeLivro from livro"""
+        sql = """SELECT idlivros, Título, ISBN, Autor, Editora, AnoPublicacao, QuantidadeLivro from livros"""
 
         self.cursor.execute (sql)
 
@@ -98,8 +97,8 @@ class RepositorioLivroMysql (Livro):
     ):
 
         sql = """
-        DELETE FROM livro
-        WHERE id = %s
+        DELETE FROM livros
+        WHERE idlivros = %s
         """
 
         valores = (id,)
@@ -108,6 +107,7 @@ class RepositorioLivroMysql (Livro):
             sql,
             valores
         )
+        self.conexao.commit()
 
         if self.cursor.rowcount > 0:
             print ("Livro deletado com sucesso.")

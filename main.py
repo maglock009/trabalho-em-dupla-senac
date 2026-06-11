@@ -26,16 +26,16 @@ def main():
         match opcao:
             case "1":
                 nome = input("Digite o nome para cadastro: ")
-                Usuario.validar_nome(nome)
+                #Usuario.validar_nome(nome)
                 email = input("Digite o email para cadastro: ")
-                Usuario.validar_email(email)
+                #Usuario.validar_email(email)
                 telefone = input("Digite o número de telefone para cadastro: ")
-                Usuario.validar_telefone (telefone)
+                #Usuario.validar_telefone (telefone)
                 cpf = input("Digite o CPF para cadastro: ")
                 #Usuario.validar_cpf(cpf)
                 endereco = input("Digite o endereço do usuário: ")
-                
-                repositorio = RepositorioUsuarioMySQL(nome, email, telefone, cpf, endereco)
+
+                repositorio = RepositorioUsuarioMySQL(nome,email,telefone,cpf,endereco)
 
                 repositorio.criar_usuario(nome, email, telefone, cpf, endereco)
 
@@ -50,19 +50,22 @@ def main():
                     Usuario.validar_telefone(telefone)
                     endereco = input("Digite o novo endereço do usuário: ")
                     Usuario.validar_endereco(endereco)
-                    RepositorioUsuarioMySQL.atualizar_usuario(id, nome, email, telefone, endereco)
+                    repositorio = RepositorioUsuarioMySQL()
+                    repositorio.atualizar_usuario(id,nome,email,telefone,endereco)
                 except ValueError:
                     print("ID inválido.")
             
             case "3":
                 try:
                     id = int(input("Digite o ID do usuário a excluir: "))
-                    RepositorioUsuarioMySQL.deletar_usuario(id)
+                    repositorio = RepositorioUsuarioMySQL()
+                    repositorio.deletar_usuario(id)
                 except ValueError:
                     print("ID inválido.")
             
             case "4":
-                RepositorioUsuarioMySQL.listar_usuarios()
+                repositorio = RepositorioUsuarioMySQL()
+                repositorio.listar_usuarios()
 
             case "5":
                 Titulo = input("Digite o título do livro: ")
@@ -77,7 +80,8 @@ def main():
                 Livro.validar_ano_publicacao(AnoPublicacao)
                 QuantidadeLivro = input("Digite a quantidade de exemplares disponíveis: ")
                 Livro.validar_quantidade(QuantidadeLivro)
-                RepositorioLivroMysql.cadastrar_livro(Titulo, ISBN, Autor, Editora, AnoPublicacao, QuantidadeLivro)
+                repositorio = RepositorioLivroMysql()
+                repositorio.cadastrar_livro(Titulo, ISBN, Autor, Editora, AnoPublicacao, QuantidadeLivro)
             
             case "6":
                 try:
@@ -94,19 +98,23 @@ def main():
                     Livro.validar_ano_publicacao(AnoPublicacao)
                     QuantidadeLivro = input("Digite a nova quantidade de exemplares: ")
                     Livro.validar_quantidade(QuantidadeLivro)
-                    RepositorioLivroMysql.atualizar_livro(id, Titulo, ISBN, Autor, Editora, AnoPublicacao, QuantidadeLivro)
+                    repositorio = RepositorioLivroMysql()
+                    repositorio.atualizar_livro(id, Titulo, ISBN, Autor, Editora, AnoPublicacao, QuantidadeLivro)
+
                 except ValueError:
                     print("ID inválido")
             
             case "7":
                 try:
                     id = int(input("Digite o ID do livro a excluir: "))
-                    RepositorioLivroMysql.deletar_livro(id)
+                    repositorio = RepositorioLivroMysql()
+                    repositorio.deletar_livro(id)
                 except ValueError:
                     print("ID inválido.")
             
             case "8":
-                RepositorioLivroMysql.listar_livro()
+                repositorio = RepositorioLivroMysql()
+                repositorio.listar_livro()
             
             case "9":
                 TempoEmprestimo = input("Digite o tempo de empréstimo do livro: ")
@@ -117,7 +125,8 @@ def main():
                 Emprestimo.validar_data(DataDevolucao)
                 ValorEmprestimo = input("Digite o valor do empréstimo: ")
                 Emprestimo.validar_valor_emprestimo(ValorEmprestimo)
-                RepositorioMysql.cadastrar_emprestimo(TempoEmprestimo,DataRetirada,DataDevolucao,ValorEmprestimo)
+                repositorio = RepositorioMysql()
+                repositorio.cadastrar_emprestimo(TempoEmprestimo,DataRetirada,DataDevolucao,ValorEmprestimo)
             
             case "10":
                 try:
@@ -130,19 +139,23 @@ def main():
                     Emprestimo.validar_data(DataDevolucao)
                     ValorEmprestimo = input("Digite o valor do empréstimo: ")
                     Emprestimo.validar_valor_emprestimo(ValorEmprestimo)
-                    RepositorioMysql.atualizar_emprestimo(TempoEmprestimo,DataRetirada,DataDevolucao,ValorEmprestimo)
+                    repositorio = RepositorioMysql()
+                    repositorio.atualizar_emprestimo(TempoEmprestimo,DataRetirada,DataDevolucao,ValorEmprestimo)
+
                 except ValueError:
                     print("ID inválido")
         
             case "11":
                 try:
                     id = int(input("Digite o ID do empréstimo a excluir: "))
-                    RepositorioMysql.deletar_emprestimo(id)
+                    repositorio = RepositorioMysql()
+                    repositorio.deletar_emprestimo()
                 except ValueError:
                     print("ID inválido")
             
             case "12":
-                RepositorioMysql.listar_emprestimo()
+                repositorio = RepositorioMysql()
+                repositorio.listar_emprestimo()
             
             case "13":
                 print("Encerrando sistema...")

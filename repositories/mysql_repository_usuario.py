@@ -1,15 +1,16 @@
-from services.menu_usuario import Usuario
 from config.database import conectar
+from interfaces.repositorio_usuario import RepositorioUsuario
+from services.menu_usuario import Usuario
 
 class RepositorioUsuarioMySQL(Usuario):
-    def __init__(self, nome, email, telefone, cpf, endereco):
+    def __init__(self):
         self.conexao = conectar()
         self.cursor = self.conexao.cursor()
 
 
     def criar_usuario(self,nome,email,telefone,cpf,endereco):
 
-        sql = """INSERT INTO usuarios (nome,email,telefone,cpf,endereco)
+        sql = """INSERT INTO usuarios (Nome,Email,Telefone,CPF,Endereco)
         VALUES (%s,%s,%s,%s,%s)
         """
 
@@ -26,7 +27,7 @@ class RepositorioUsuarioMySQL(Usuario):
 
     def listar_usuarios(self):
 
-        sql = "SELECT id, nome, email, telefone, cpf, endereco FROM usuarios"
+        sql = "SELECT idUsuarios, nome, email, telefone, cpf, endereco FROM usuarios"
 
         self.cursor.execute(sql)
 
@@ -54,7 +55,7 @@ class RepositorioUsuarioMySQL(Usuario):
             email = %s,
             telefone = %s,
             endereco = %s
-        WHERE id = %s
+        WHERE idUsuarios = %s
         """
 
         valores = (
@@ -89,7 +90,7 @@ class RepositorioUsuarioMySQL(Usuario):
 
         sql = """
         DELETE FROM usuarios
-        WHERE id = %s
+        WHERE idUsuarios = %s
         """
 
         valores = (id,)

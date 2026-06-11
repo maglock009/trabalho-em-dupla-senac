@@ -2,8 +2,7 @@ from services.menu_emprestimo import Emprestimo
 from config.database import conectar
 
 class RepositorioMysql (Emprestimo):
-    def __init__ (self, TempoEmprestimo, DataRetirada, DataDevolucao, ValorEmprestimo):
-        super().__init__(TempoEmprestimo, DataRetirada, DataDevolucao, ValorEmprestimo)
+    def __init__ (self):
         self.conexao = conectar()
         self.cursor = self.conexao.cursor()
     
@@ -16,7 +15,7 @@ class RepositorioMysql (Emprestimo):
             data_devolucao,
             valor_emprestimo
     ):
-        sql = """ INSERT INTO emprestimo (usuario, livro, tempo_emprestimo, data_retirada, data_devolucao, valor_emprestimo)
+        sql = """ INSERT INTO emprestimos (usuario, livro, tempo_emprestimo, data_retirada, data_devolucao, valor_emprestimo)
         VALUES (%s, %s, %s, %s, %s, %s)
         """
         valores = usuario, livro, tempo_emprestimo, data_retirada, data_devolucao, valor_emprestimo
@@ -40,14 +39,14 @@ class RepositorioMysql (Emprestimo):
     ):
         
         sql = """
-        UPDATE emprestimo
+        UPDATE emprestimos
         SET usuario = %s,
             livro = %s,
             tempo_emprestimo = %s,
             data_retirada = %s,
             data_devolucao = %s,
             valor_emprestimo = %s
-        WHERE id = %s
+        WHERE idEmprestimos = %s
         """
 
         valores = (
@@ -74,7 +73,7 @@ class RepositorioMysql (Emprestimo):
             )
 
     def listar_emprestimo (self):
-        sql = """SELECT id usuario, livro, tempo_emprestimo, data_retirada, data_devolucao, valor_emprestimo FROM emprestimo"""
+        sql = """SELECT idEmprestimos, Usuarios_idUsuarios, livros_idlivros, TempoEmprestimo, DataRetirada, DataDevolucao, ValorEmprestimo FROM emprestimos"""
 
         self.cursor.execute(sql)
 
@@ -95,8 +94,8 @@ class RepositorioMysql (Emprestimo):
     ):
         
         sql = """
-        DELETE FROM emprestimo
-        WHERE id = %s
+        DELETE FROM emprestimos
+        WHERE idEmprestimos = %s
         """
 
         valores = (id,)
