@@ -117,20 +117,9 @@ def main():
                 repositorio.listar_livro()
             
             case "9":
-                TempoEmprestimo = input("Digite o tempo de empréstimo do livro: ")
-                Emprestimo.validar_data(TempoEmprestimo)
-                DataRetirada = input("Digite a data de retirada do empréstimo: ")
-                Emprestimo.validar_data(DataRetirada)
-                DataDevolucao = input("Digite a data de devolução do empréstimo: ")
-                Emprestimo.validar_data(DataDevolucao)
-                ValorEmprestimo = input("Digite o valor do empréstimo: ")
-                Emprestimo.validar_valor_emprestimo(ValorEmprestimo)
-                repositorio = RepositorioMysql()
-                repositorio.cadastrar_emprestimo(TempoEmprestimo,DataRetirada,DataDevolucao,ValorEmprestimo)
-            
-            case "10":
                 try:
-                    id = int(input("Digite o ID do empréstimo a atualizar: "))
+                    id_usuario = int(input("Digite o ID do usuário que deseja realizar um empréstimo: "))
+                    id_livro = int(input("Digite o ID do livro que o usuário deseja:"))
                     TempoEmprestimo = input("Digite o tempo de empréstimo do livro: ")
                     Emprestimo.validar_data(TempoEmprestimo)
                     DataRetirada = input("Digite a data de retirada do empréstimo: ")
@@ -140,7 +129,25 @@ def main():
                     ValorEmprestimo = input("Digite o valor do empréstimo: ")
                     Emprestimo.validar_valor_emprestimo(ValorEmprestimo)
                     repositorio = RepositorioMysql()
-                    repositorio.atualizar_emprestimo(TempoEmprestimo,DataRetirada,DataDevolucao,ValorEmprestimo)
+                    repositorio.cadastrar_emprestimo(id_usuario,id_livro,TempoEmprestimo,DataRetirada,DataDevolucao,ValorEmprestimo)
+                except ValueError:
+                    print("ID inválido")
+            
+            case "10":
+                try:
+                    id = int(input("Digite o ID do empréstimo a atualizar: "))
+                    id_usuario = int(input("Digite o ID do novo usuário: "))
+                    id_livro = int(input("Digite o ID do novo livro: "))
+                    TempoEmprestimo = int(input("Digite o tempo de empréstimo do livro: "))
+                    #Emprestimo.validar_data(TempoEmprestimo)
+                    DataRetirada = input("Digite a data de retirada do empréstimo: ")
+                    #Emprestimo.validar_data(DataRetirada)
+                    DataDevolucao = input("Digite a data de devolução do empréstimo: ")
+                    #Emprestimo.validar_data(DataDevolucao)
+                    ValorEmprestimo = input("Digite o valor do empréstimo: ")
+                    #Emprestimo.validar_valor_emprestimo(ValorEmprestimo)
+                    repositorio = RepositorioMysql()
+                    repositorio.atualizar_emprestimo(id,id_usuario,id_livro,TempoEmprestimo,DataRetirada,DataDevolucao,ValorEmprestimo)
 
                 except ValueError:
                     print("ID inválido")
@@ -149,7 +156,7 @@ def main():
                 try:
                     id = int(input("Digite o ID do empréstimo a excluir: "))
                     repositorio = RepositorioMysql()
-                    repositorio.deletar_emprestimo()
+                    repositorio.deletar_emprestimo(id)
                 except ValueError:
                     print("ID inválido")
             

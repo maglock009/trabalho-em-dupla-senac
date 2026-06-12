@@ -15,7 +15,7 @@ class RepositorioMysql (Emprestimo):
             data_devolucao,
             valor_emprestimo
     ):
-        sql = """ INSERT INTO emprestimos (usuario, livro, tempo_emprestimo, data_retirada, data_devolucao, valor_emprestimo)
+        sql = """ INSERT INTO emprestimos (Usuarios_idUsuarios, livros_idlivros, TempoEmprestimo, DataRetirada, DataDevolucao, ValorEmprestimo)
         VALUES (%s, %s, %s, %s, %s, %s)
         """
         valores = usuario, livro, tempo_emprestimo, data_retirada, data_devolucao, valor_emprestimo
@@ -40,8 +40,8 @@ class RepositorioMysql (Emprestimo):
         
         sql = """
         UPDATE emprestimos
-        SET usuario = %s,
-            livro = %s,
+        SET Usuarios_idUsuarios = %s,
+            livros_idlivros = %s,
             tempo_emprestimo = %s,
             data_retirada = %s,
             data_devolucao = %s,
@@ -108,11 +108,11 @@ class RepositorioMysql (Emprestimo):
         self.conexao.commit()
 
         if self.cursor.rowcount > 0:
-            print ("Usuário deletado com sucesso.")
+            print ("Empréstimo deletado com sucesso.")
         
 
         else: 
-            print("Usuário não encontrado.")
+            print("Empréstimo não encontrado.")
 
 
 
