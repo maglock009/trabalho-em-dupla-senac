@@ -4,43 +4,51 @@ class Usuario:
             raise ValueError("Email inválido")
         if not Usuario.validar_telefone(telefone):
             raise ValueError("Telefone inválido")
-        if not Usuario.validar_nome (nome):
-            raise ValueError ("Nome inválido")
-        if not Usuario.validar_cpf(cpf):
-            raise ValueError ("CPF inválido")
         if not Usuario.validar_endereco(endereco):
             raise ValueError("Endereço inválido")
         self.nome = nome
         self.email = email
         self.telefone = telefone
-        self.cpf = cpf
+        self.__cpf = cpf
         self.endereco = endereco
+    
+    @property 
+    def nomes(self):
+        return self.nome
+    
+    @nomes.setter
+    def nomes(self, valor):
+        try:
+            if valor.isalpha() == True:
+                self.nome = valor
+            else:
+                raise ValueError
+        except ValueError:
+            print("O nome não deve conter caracteres especiais.")
+            return 
     
     @staticmethod
     def validar_email(email):
         return "@" in email and "." in email
+
+    @property
+    def cpf(self):
+        return self.__cpf
     
+    @cpf.setter
+    def cpf(self, valor):
+        try:
+            if valor.isdigit() == True and len(valor) == 11:
+                self.__cpf = valor
+            else:
+                raise ValueError
+        except ValueError:
+            print("Formato de CPF inválido.")
+            return
+        
     @staticmethod
     def validar_telefone(telefone):
         return len(telefone) == 11
-
-    @staticmethod
-    def validar_nome(nome):
-        if any(char.isdigit() for char in str(nome)):
-            print ("O seu nome não pode ter números.")
-            return False
-        elif not str(nome).strip():
-            print ("O seu nome não pode estar vazio.")
-            return
-        else:
-            return nome
-    
-    @staticmethod
-    def validar_cpf (cpf):
-        if len(str(cpf)) != 11 or str(cpf).isalpha()==True:
-            print ("CPF inválido")
-        else:
-            return cpf
         
     @staticmethod
     def validar_endereco(endereco):
