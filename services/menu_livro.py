@@ -14,7 +14,7 @@ class Livro:
             raise ValueError("Ano de publicação inválido.")
         if not Livro.validar_quantidade(QuantidadeLivro):
             raise ValueError("Quantidade de livros inválida.")
-        self.titulo = Titulo
+        self.Titulo = Titulo
         self.ISBN = ISBN
         self.Autor = Autor
         self.Editora = Editora 

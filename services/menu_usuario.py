@@ -13,12 +13,12 @@ class Usuario:
         self.nome = nome
         self.email = email
         self.telefone = telefone
-        self.__cpf = cpf
+        self.cpf = cpf
         self.endereco = endereco
     
     @staticmethod
     def validar_nome(nome):
-        if len(str(nome)) < 1 and nome.isdigit():
+        if len(str(nome)) < 1 or str(nome).isdigit():
             raise ValueError
         else:
             return True

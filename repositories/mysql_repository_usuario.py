@@ -46,6 +46,7 @@ class RepositorioUsuarioMySQL(Usuario):
         novo_nome,
         novo_email,
         novo_telefone,
+        novo_cpf,
         novo_endereco
     ):
 
@@ -54,6 +55,7 @@ class RepositorioUsuarioMySQL(Usuario):
         SET nome = %s,
             email = %s,
             telefone = %s,
+            CPF = %s
             endereco = %s
         WHERE idUsuarios = %s
         """
@@ -62,6 +64,7 @@ class RepositorioUsuarioMySQL(Usuario):
             novo_nome,
             novo_email,
             novo_telefone,
+            novo_cpf,
             novo_endereco,
             id
         )
