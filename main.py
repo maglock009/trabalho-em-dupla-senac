@@ -25,17 +25,18 @@ def main():
         opcao = input("Selecione uma opção acima: ").strip().lower()
         match opcao:
             case "1":
-                nome = input("Digite o nome para cadastro: ")
-                email = input("Digite o email para cadastro: ")
-                Usuario.validar_email(email)
-                telefone = input("Digite o número de telefone para cadastro: ")
-                Usuario.validar_telefone (telefone)
-                cpf = input("Digite o CPF para cadastro: ")
-                endereco = input("Digite o endereço do usuário: ")
-
-                repositorio = RepositorioUsuarioMySQL(nome,email,telefone,cpf,endereco)
-
-                repositorio.criar_usuario(nome, email, telefone, cpf, endereco)
+                    nome = input("Digite o nome para cadastro: ")
+                    Usuario.validar_nome(nome)
+                    email = input("Digite o email para cadastro: ")
+                    Usuario.validar_email(email)
+                    telefone = input("Digite o número de telefone para cadastro: ")
+                    Usuario.validar_telefone(telefone)
+                    cpf = input("Digite o CPF para cadastro: ")
+                    Usuario.validar_cpf(cpf)
+                    endereco = input("Digite o endereço do usuário: ")
+                    Usuario.validar_endereco(endereco)
+                    repositorio = RepositorioUsuarioMySQL()
+                    repositorio.criar_usuario(nome, email, telefone, cpf, endereco)
 
             case "2":
                 try: 
@@ -137,13 +138,13 @@ def main():
                     id_usuario = int(input("Digite o ID do novo usuário: "))
                     id_livro = int(input("Digite o ID do novo livro: "))
                     TempoEmprestimo = int(input("Digite o tempo de empréstimo do livro: "))
-                    #Emprestimo.validar_data(TempoEmprestimo)
+                    Emprestimo.validar_data(TempoEmprestimo)
                     DataRetirada = input("Digite a data de retirada do empréstimo: ")
-                    #Emprestimo.validar_data(DataRetirada)
+                    Emprestimo.validar_data(DataRetirada)
                     DataDevolucao = input("Digite a data de devolução do empréstimo: ")
-                    #Emprestimo.validar_data(DataDevolucao)
+                    Emprestimo.validar_data(DataDevolucao)
                     ValorEmprestimo = input("Digite o valor do empréstimo: ")
-                    #Emprestimo.validar_valor_emprestimo(ValorEmprestimo)
+                    Emprestimo.validar_valor_emprestimo(ValorEmprestimo)
                     repositorio = RepositorioMysql()
                     repositorio.atualizar_emprestimo(id,id_usuario,id_livro,TempoEmprestimo,DataRetirada,DataDevolucao,ValorEmprestimo)
 
