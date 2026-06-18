@@ -25,13 +25,12 @@ def main():
         opcao = input("Selecione uma opção acima: ").strip().lower()
         match opcao:
             case "1":
+                    nome = input("Digite o nome para cadastro: ")
+                    email = input("Digite o email para cadastro: ")
+                    telefone = input("Digite o número de telefone para cadastro: ")
+                    cpf = input("Digite o CPF para cadastro: ")
+                    endereco = input("Digite o endereço do usuário: ")
                     try:
-                        nome = input("Digite o nome para cadastro: ")
-                        email = input("Digite o email para cadastro: ")
-                        telefone = input("Digite o número de telefone para cadastro: ")
-                        cpf = input("Digite o CPF para cadastro: ")
-                        endereco = input("Digite o endereço do usuário: ")
-                        
                         usuario = Usuario (nome,email,telefone,cpf,endereco)
                         
                         repositorio = RepositorioUsuarioMySQL()
@@ -43,10 +42,12 @@ def main():
                             usuario.cpf, 
                             usuario.endereco
                         )
-                    except ValueError as erro:
-                        print (erro)
+                    except ValueError as e:
+                        print (f"Erro: {e}")
 
             case "2":
+                repositorio = RepositorioUsuarioMySQL()
+                repositorio.listar_usuarios()
                 try: 
                     id = int(input("Digite o ID do usuário a atualizar: "))
                     nome = input("Digite o novo nome do usuário: ")
@@ -56,8 +57,6 @@ def main():
                     endereco = input("Digite o novo endereço do usuário: ")
                     
                     usuario = Usuario (nome,email,telefone,cpf,endereco)
-                   
-                    repositorio = RepositorioUsuarioMySQL()
                     
                     repositorio.atualizar_usuario(
                         id,
@@ -71,13 +70,13 @@ def main():
                     print(erro)
             
             case "3":
+                repositorio = RepositorioUsuarioMySQL()
+                repositorio.listar_usuarios()
                 try:
                     id = int(input("Digite o ID do usuário a excluir: "))
 
                     if id <= 0:
                         raise ValueError ("ID inválido.")
-                    
-                    repositorio = RepositorioUsuarioMySQL()
 
                     repositorio.deletar_usuario(id)
                     
@@ -107,6 +106,8 @@ def main():
                     print (erro)
             
             case "6":
+                repositorio = RepositorioLivroMysql()
+                repositorio.listar_livro()
                 try:
                     id = int(input("Digite o ID do livro a atualizar: "))
                     Titulo = input("Digite o novo título do livro: ")
@@ -117,8 +118,6 @@ def main():
                     QuantidadeLivro = input("Digite a nova quantidade de exemplares: ")
 
                     livro = Livro (Titulo, ISBN, Autor, Editora, AnoPublicacao, QuantidadeLivro)
-
-                    repositorio = RepositorioLivroMysql()
 
                     repositorio.atualizar_livro(
                         id, 
@@ -134,13 +133,13 @@ def main():
                     print(erro)
             
             case "7":
+                repositorio = RepositorioLivroMysql()
+                repositorio.listar_livro()
                 try:
                     id = int(input("Digite o ID do livro a excluir: "))
 
                     if id <= 0:
                         raise ValueError("ID inválido.")
-                    
-                    repositorio = RepositorioLivroMysql()
 
                     repositorio.deletar_livro(id)
 
@@ -152,6 +151,10 @@ def main():
                 repositorio.listar_livro()
             
             case "9":
+                repo_user = RepositorioUsuarioMySQL()
+                repo_livro = RepositorioLivroMysql()
+                repo_user.listar_usuarios()
+                repo_livro.listar_livro()
                 try:
                     id_usuario = int(input("Digite o ID do usuário que deseja realizar um empréstimo: "))
                     id_livro = int(input("Digite o ID do livro que o usuário deseja:"))
@@ -186,6 +189,10 @@ def main():
                     print(erro)
             
             case "10":
+                repo_livro = RepositorioLivroMysql()
+                repo_user = RepositorioUsuarioMySQL()
+                repo_livro.listar_livro()
+                repo_user.listar_usuarios()
                 try:
                     id = int(input("Digite o ID do empréstimo a atualizar: "))
                     id_usuario = int(input("Digite o ID do novo usuário: "))
